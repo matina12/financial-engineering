@@ -9,7 +9,10 @@ public class BlackScholesPricingApp {
     public static void main(String[] args) {
 
         double firstCallPrice=callPrice(28, 40, 0.06, Math.sqrt(0.5), 0.5);
-        System.out.println("The call price of this option is: " + firstCallPrice);
+        System.out.println("The price of this call option is: " + firstCallPrice);
+
+        double firstPutPrice = putPrice(20, 20, 0.08, Math.sqrt(0.36), 0.5);
+        System.out.println("The price of this call option is: " + firstPutPrice);
 
     }
 
@@ -17,14 +20,14 @@ public class BlackScholesPricingApp {
     {
         int neg = (x < 0d) ? 1 : 0;
         if ( neg == 1)
-            x *= -1d;
+            x *= -1;
 
-        double k = (1d / ( 1d + 0.2316419 * x));
+        double k = (1 / ( 1 + 0.2316419 * x));
         double y = (((( 1.330274429 * k - 1.821255978) * k + 1.781477937) *
                 k - 0.356563782) * k + 0.319381530) * k;
         y = 1.0 - 0.398942280401 * Math.exp(-0.5 * x * x) * y;
 
-        return (1d - neg) * y + neg * (1d - y);
+        return (1 - neg) * y + neg * (1 - y);
     }
 
 
